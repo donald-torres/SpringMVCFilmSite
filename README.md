@@ -22,12 +22,12 @@
 
    Pros -
    
-    - Became more comfortable with JSP syntax.
+   - Became more comfortable with JSP syntax.
   
-    - Better grasp at using DAOs.
+   - Better grasp at using DAOs.
   
    Cons - Obstacles during coding -
    
-    - When adding the film actors to the output I over thought it making a new JSP and RequestMapping to the Controller.  All I did was add a List of actors to the Film class and some getters and setters, and in the findById method in the FilmDaoJdbcImpl class I simply added that List of actors after the Film constructor so it would print out properly. 
+   - When adding the film actors to the output I over thought it making a new JSP and RequestMapping to the Controller.  All I did was add a List of actors to the Film class and some getters and setters, and in the findById method in the FilmDaoJdbcImpl class I simply added that List of actors after the Film constructor so it would print out properly. 
     
-    - Getting the corresponding films details to display from the Keyword search results was more simple than I attempted.  I researched tags in HTML and attempted several different methods to find out I only needed to substitute my variable using single quotes instead of putting it in a separate variable and passing that though my onClick function.
+   - Getting the corresponding films details to display from the Keyword search results was more simple than I attempted.  I researched tags in HTML and attempted several different methods to find out I only needed to substitute my variable using single quotes instead of putting it in a separate variable and passing that though my onClick function.
