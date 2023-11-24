@@ -1,9 +1,14 @@
 package com.skilldistillery.film.data;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
 
 public class FilmDaoJdbcImpl implements FilmDAO {
@@ -11,7 +16,8 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	private static final String USER = "student";
 	private static final String PASS = "student";
 
-	private final String fullDataQuery = "SELECT film.*, language.name FROM film JOIN language ON language.id = film.language_id" + "";
+	private final String fullDataQuery = "SELECT film.*, language.name FROM film JOIN language ON language.id = film.language_id"
+			+ "";
 
 	public FilmDaoJdbcImpl() {
 		try {
@@ -24,7 +30,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	}
 
 	@Override
-	public Film findById(int filmId) {
+	public Film findById(String filmId) {
 		Film film = null;
 		try {
 			Connection conn = DriverManager.getConnection(URL, USER, PASS);
@@ -33,11 +39,11 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 			PreparedStatement stmt = conn.prepareStatement(sql);
 
-			stmt.setInt(1, filmId);
+			stmt.setString(1, filmId);
 
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
-				int filmsId = rs.getInt("film.id");
+				String filmsId = rs.getString("film.id");
 				String title = rs.getString("title");
 				String desc = rs.getString("description");
 				short releaseYear = rs.getShort("release_year");
@@ -52,6 +58,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 				film = new Film(filmsId, title, desc, releaseYear, langId, rentDur, rate, length, repCost, rating,
 						features, lang);
+				film.setActors(findActorsByFilmId(filmId));
 			}
 			rs.close();
 			stmt.close();
@@ -76,7 +83,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				int filmId = rs.getInt("film.id");
+				String filmId = rs.getString("film.id");
 				String title = rs.getString("title");
 				String desc = rs.getString("description");
 				short releaseYear = rs.getShort("release_year");
@@ -100,6 +107,37 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			e.printStackTrace();
 		}
 		return films;
+	}
+
+	public List<Actor> findActorsByFilmId(String filmId) {
+		List<Actor> actors = new ArrayList<>();
+
+		try {
+			Connection conn = DriverManager.getConnection(URL, USER, PASS);
+			String sql = "SELECT actor.* FROM actor JOIN film_actor ON actor.id = film_actor.actor_id WHERE film_actor.film_id = ?";
+
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, filmId);
+
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				int actorId = rs.getInt("id");
+				String firstName = rs.getString("first_name");
+				String lastName = rs.getString("last_name");
+
+				Actor actor = new Actor(actorId, firstName, lastName);
+				actors.add(actor);
+			}
+
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return actors;
 	}
 
 }

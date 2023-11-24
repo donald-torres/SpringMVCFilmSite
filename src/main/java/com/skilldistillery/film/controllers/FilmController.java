@@ -18,14 +18,15 @@ public class FilmController {
 	public String goodHome() {
 		return "WEB-INF/home.jsp";
 	}
-	
+
 	@RequestMapping(path = "findById.do", method = RequestMethod.GET, params = "filmId")
-	public ModelAndView findById(int filmId) {
+	public ModelAndView findById(String filmId) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("film", filmDAO.findById(filmId));
 		mv.setViewName("WEB-INF/FilmInfo.jsp");
 		return mv;
 	}
+
 	@RequestMapping(path = "searchByKeyword.do", method = RequestMethod.GET, params = "keyword")
 	public ModelAndView searchByKeyword(String keyword) {
 		ModelAndView mv = new ModelAndView();

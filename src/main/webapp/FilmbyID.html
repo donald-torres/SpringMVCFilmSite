@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Film by ID</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Film by ID</title>
 </head>
+
 <body>
-  <h3>Film by ID</h3>
-  <form action="findById.do" method="GET">
-    Name:
-    <input type="text" name="filmId"/> 
-    <input type="submit" value="Get Film Info" />
-  </form>
+	<h3>Enter a Film ID number to look up the Film Details</h3>
+	<form action="findById.do" method="GET">
+		ID:
+		<input type="text" name="filmId" />
+		<input type="submit" value="Get Film Info" />
+	</form>
+	<a href="javascript: history.back()">Go back</a>
 </body>
+
+
 </html>

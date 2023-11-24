@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Film by ID</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Film by Keyword</title>
 </head>
+
 <body>
-  <h3>Film by ID</h3>
-  <form action="searchByKeyword.do" method="GET">
-    Name:
-    <input type="text" name="keyword"/> 
-    <input type="submit" value="Get Films Info" />
-  </form>
+	<h3>Enter a keyword to look up every Film with that keyword in its Title or Description </h3>
+	<form action="searchByKeyword.do" method="GET">
+		Keyword:
+		<input type="text" name="keyword" />
+		<input type="submit" value="Get Film List" />
+	</form>
+	<a href="javascript: history.back()">Go back</a>
 </body>
+
 </html>

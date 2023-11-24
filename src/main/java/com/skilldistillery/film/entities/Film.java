@@ -1,9 +1,10 @@
 package com.skilldistillery.film.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Film {
-	private int id;
+	private String id;
 	private String title;
 	private String description;
 	private int releaseYear;
@@ -15,17 +16,14 @@ public class Film {
 	private String rating;
 	private String specialFeatures;
 	private String language;
+	private List<Actor> actors;
 
-	
-
-
-
-	public Film(int id, String title) {
+	public Film(String id, String title) {
 		this.id = id;
 		this.title = title;
 	}
-		
-	public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
+
+	public Film(String id, String title, String description, int releaseYear, int languageId, int rentalDuration,
 			double rentalRate, int length, double replacementCost, String rating, String specialFeatures,
 			String language) {
 		this.id = id;
@@ -42,11 +40,11 @@ public class Film {
 		this.language = language;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -136,6 +134,14 @@ public class Film {
 
 	public void setSpecialFeatures(String specialFeatures) {
 		this.specialFeatures = specialFeatures;
+	}
+
+	public List<Actor> getActors() {
+		return actors;
+	}
+
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
 	}
 
 	@Override
