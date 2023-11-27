@@ -24,13 +24,13 @@ class FilmDaoJdbcImplTest {
 	 }
 	 @Test
 	 void test_findById_returns_film() {
-	 	Film film = dao.findById(1);
+	 	Film film = dao.findById("1");
 	 	assertNotNull(film);
 //	 	assertEquals("ACADEMY DINOSAUR", film.getTitle());
 	 }
 	 @Test
 	 void test_findById_returns_null_for_invalid_id() {
-	 	Film film = dao.findById(1234567);
+	 	Film film = dao.findById("1234567");
 	 	assertNull(film);
 	 }
 
