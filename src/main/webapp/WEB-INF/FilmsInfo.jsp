@@ -51,7 +51,9 @@ body {
 			</table>
 		</c:when>
 		<c:otherwise>
-			<p>No Films found</p>
+			<h1 class="display-3 text-center">
+				<strong>No Films found</strong>
+			</h1>
 		</c:otherwise>
 	</c:choose>
 	<script
